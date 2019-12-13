@@ -34,11 +34,15 @@ psql -c "CREATE USER $POSTGRES_GIS_USER WITH PASSWORD '$POSTGRES_GIS_USER_PASSWO
 
 # create databases
 psql -c "CREATE DATABASE gis;"
+psql -c "CREATE DATABASE geocoder;"
 
 
 # add extensions to databases
 psql gis -c "CREATE EXTENSION IF NOT EXISTS postgis;"
 psql gis -c "CREATE EXTENSION IF NOT EXISTS fuzzystrmatch;"
+psql geocoder -c "CREATE EXTENSION IF NOT EXISTS postgis;"
+psql geocoder -c "CREATE EXTENSION IF NOT EXISTS fuzzystrmatch;"
+
 
 # # restore database if dump file exists
 # if [ -f /opt/backups/restore.dump ]; then
