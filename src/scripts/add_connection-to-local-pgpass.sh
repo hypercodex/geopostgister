@@ -6,6 +6,6 @@
 
 set -m
 
-source .env && echo "localhost:5433:geocoder:${PG_GEOCODER_USER}:${PG_GEOCODER_USER_PASSWORD}" >> ~/.pgpass
+source .env && echo "localhost:5433:geocoder:${POSTGRES_GIS_USER}:${POSTGRES_GIS_USER_PASSWORD}" >> ~/.pgpass
 
 chmod 600 ~/.pgpass

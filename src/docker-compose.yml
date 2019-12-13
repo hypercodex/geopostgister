@@ -13,10 +13,8 @@ services:
       - "./postgis/sql/install_postgis_geocoder.sql:/docker-entrypoint-initdb.d/setup-db.sql"
     environment:
       - POSTGRES_DB=geocoder
-      - POSTGRES_USER=${PG_GEOCODER_USER}
-      - POSTGRES_PASS=${PG_GEOCODER_USER_PASSWORD}
-      - POSTGRES_GIS_USER=${POSTGRES_GIS_USER}
-      - POSTGRES_GIS_USER_PASSWORD=${POSTGRES_GIS_USER_PASSWORD}
+      - POSTGRES_USER=${POSTGRES_GIS_USER}
+      - POSTGRES_PASS=${POSTGRES_GIS_USER_PASSWORD}
       - ALLOW_IP_RANGE=0.0.0.0/0
       - POSTGRES_MULTIPLE_EXTENSIONS=postgis,hstore,postgis_topology,ogr_fdw,fuzzystrmatch,postgis_tiger_geocoder,address_standardizer
     ports:
