@@ -33,7 +33,7 @@ RUN chmod +x /opt/pgbackup.sh
 
 # add init script
 RUN mkdir -p /docker-entrypoint-initdb.d
-COPY ./initdb-postgis.sh /docker-entrypoint-initdb.d/postgis.sh
+COPY ./initdb.d/* /docker-entrypoint-initdb.d/
 
 # folder for tigerline data
 RUN mkdir /gisdata

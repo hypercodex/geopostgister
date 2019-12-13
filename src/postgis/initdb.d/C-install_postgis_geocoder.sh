@@ -1,4 +1,9 @@
+#! /bin/bash
 
+set -e
+
+
+psql v ON_ERROR_STOP=1 -U "$POSTGRES_GIS_USER" -d "$POSTGRES_GIS_DATABASE" <<-EOSQL
 CREATE EXTENSION fuzzystrmatch;
 CREATE EXTENSION postgis;
 CREATE EXTENSION postgis_tiger_geocoder;
@@ -41,7 +46,7 @@ SET declare_sect = 'TMPDIR="/gisdata/temp/"
  export PGUSER=${POSTGRES_USER}
  export PGPASSWORD=${POSTGRES_PASS}
  export PGDATABASE=geocoder
- PSQL=${PGBIN}/psql
+ PSQL=psql
  SHP2PGSQL=shp2pgsql
  cd /gisdata
 '
@@ -51,3 +56,4 @@ SELECT declare_sect
 FROM tiger.loader_platform
 WHERE os = 'geocoder';
 
+EOSQL

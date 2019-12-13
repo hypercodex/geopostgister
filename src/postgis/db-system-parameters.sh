@@ -29,25 +29,3 @@ psql -c "ALTER SYSTEM SET max_wal_size = '2GB';"
 psql -c "ALTER SYSTEM SET max_worker_processes = '8';"
 psql -c "ALTER SYSTEM SET max_parallel_workers_per_gather = '4';"
 psql -c "ALTER SYSTEM SET max_parallel_workers = '8';"
-
-psql -c "CREATE USER $POSTGRES_GIS_USER WITH PASSWORD '$POSTGRES_GIS_USER_PASSWORD';"
-
-# create databases
-psql -c "CREATE DATABASE gis;"
-psql -c "CREATE DATABASE geocoder;"
-
-
-# add extensions to base GIS database
-psql gis -c "CREATE EXTENSION IF NOT EXISTS postgis;"
-psql gis -c "CREATE EXTENSION IF NOT EXISTS fuzzystrmatch;"
-
-
-# Install the geocoder
-psql geocoder -f /docker-entrypoint-initdb.d/setup-db.sql
-
-
-# # restore database if dump file exists
-# if [ -f /opt/backups/restore.dump ]; then
-#   echo "Restoring backup..."
-#   pg_restore -d gis --clean --if-exists /opt/backups/restore.dump
-# fi
