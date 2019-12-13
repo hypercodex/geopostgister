@@ -37,11 +37,13 @@ psql -c "CREATE DATABASE gis;"
 psql -c "CREATE DATABASE geocoder;"
 
 
-# add extensions to databases
+# add extensions to base GIS database
 psql gis -c "CREATE EXTENSION IF NOT EXISTS postgis;"
 psql gis -c "CREATE EXTENSION IF NOT EXISTS fuzzystrmatch;"
-psql geocoder -c "CREATE EXTENSION IF NOT EXISTS postgis;"
-psql geocoder -c "CREATE EXTENSION IF NOT EXISTS fuzzystrmatch;"
+
+
+# Install the geocoder
+psql geocoder -f /docker-entrypoint-initdb.d/setup-db.sql
 
 
 # # restore database if dump file exists
