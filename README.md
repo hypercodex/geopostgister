@@ -21,7 +21,7 @@ After making sure the requirements are correctly installed.
 Run the bootstrapping loader for $STATE
 
 ```
-bash load-tiger-geocoder.sh
+bash load-tiger-geocoder.sh $STATE
 ```
 
 The loading step can take a long time depending on network connection speed. The tiger data 

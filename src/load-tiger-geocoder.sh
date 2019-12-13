@@ -5,12 +5,20 @@ set -e
 source scripts/util/db.sh
 
 
-STATE="TX"
+STATE=$1
+ARG_LENGTH=${#STATE}
+
+if [ $ARG_LENGTH != 2 ]; then
+  echo "ERROR: State identifier arg needs to be a 2 char string"
+  exit 1
+fi
+
+echo "Running PostGIS Geocoder load step for ${STATE}"
+
 STATE_LOWER=$(echo $STATE | awk '{print tolower($0)}')
 
 docker-compose up -d
 sleep 7
-
 
 # Load nation level tigerline data
 bash scripts/create-nation-script.sh
