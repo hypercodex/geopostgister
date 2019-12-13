@@ -26,5 +26,5 @@ docker-compose up -d
 
 ### Loading
 ```
-bash load-tiger-geocoder.sh $STATE_
+bash load-tiger-geocoder.sh $STATE
 ```
