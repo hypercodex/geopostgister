@@ -1,0 +1,3 @@
+src/postgis/loader-scripts/*
+!src/postgis/loader-scripts/.keep
+src/.env
