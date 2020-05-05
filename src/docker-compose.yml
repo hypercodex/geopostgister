@@ -1,18 +1,20 @@
-version: '3'
+version: '3.7'
 
 
 services:
   postgis:
+    shm_size: '2gb'
     build:
       context: ./postgis
     volumes:
-      - pg_analytical:/var/lib/postgresql
-      - gisdata:/gisdata
-      - ./backups:/opt/backups
+      - "pg_analytical:/var/lib/postgresql/data"
+      - "gisdata:/gisdata"
+      - "./backups:/opt/backups"
       - "./postgis/loader-scripts:/usr/local/src"
     environment:
       - POSTGRES_USER=${POSTGRES_GIS_USER}
       - POSTGRES_PASS=${POSTGRES_GIS_USER_PASSWORD}
+      - POSTGRES_PASSWORD=${POSTGRES_GIS_USER_PASSWORD}
       - POSTGRES_GIS_DATABASE=${POSTGRES_GIS_DATABASE}
       - POSTGRES_GIS_USER=${POSTGRES_GIS_USER}
       - POSTGRES_GIS_USER_PASSWORD=${POSTGRES_GIS_USER_PASSWORD}
